@@ -2,6 +2,7 @@
 # Expected input for ZeroMQ will be the search term. We cannot take in user input directly or have a menu, so this will only be the search functionality.
 import time
 import zmq
+import os
 
 # What do we want the outcome to be?
 # How are each of our entries stored?
@@ -9,13 +10,31 @@ import zmq
 # tags will arguably be the hardest part. We need somewhere to store tags, and store tags on individual entries
 # The only way I can think to do this is hardcoding dictionary file names individually, which we cannot alter otherwise, or using a text file to store the values, either way, lots of work. I don't think I will be using tagging, just searching keywords
 
-def folderSearch(keyword):
+def folderSearch(keyword, folder):
   # this will be for terminal-based, just in case
+  # folder = directory path /path/example/folder
   print("The following files contain the keyword: {keyword} \n")
   # navigate into folder
   # search file contents for keyword (use a for loop)
+  for file in os.listdir(folder):
+    with open(file) as f:
+        if (keyword in f.read()):
+          filePath = os.path.join(folder, file) 
+          print(filePath)
   # if keyword is found, print in a list
-  if ():
+
+
+# Add search implementation function into search tag function. 
+# At least make the part I will use because I cannot trust Fern to handle my logic. 
+# Take in a folder name, and a keyword variable. 
+# For loop to go through my folder, then example:
+
+# with open('example.txt') as f:
+#     if 'blabla' in f.read():
+#         print("true")
+
+# One function might be able to be take the keyword and search the file logic to save space
+
     
 
 def main():
@@ -31,7 +50,8 @@ def main():
 
       # Potentially strip the first letter to determine which function to use (mode)
       # Potential modes: Tag versus search mode, and a mode for how the entries are stored.
-    
+      if (terminalMode): #filler variable to be changed
+        folderSearch(receivedMessage, folder) #variables will likely need to be altered too
       #  Pause
       time.sleep(1)
 
