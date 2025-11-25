@@ -23,18 +23,6 @@ def folderSearch(keyword, folder):
           print(filePath)
   # if keyword is found, print in a list
 
-
-# Add search implementation function into search tag function. 
-# At least make the part I will use because I cannot trust Fern to handle my logic. 
-# Take in a folder name, and a keyword variable. 
-# For loop to go through my folder, then example:
-
-# with open('example.txt') as f:
-#     if 'blabla' in f.read():
-#         print("true")
-
-# One function might be able to be take the keyword and search the file logic to save space
-
     
 
 def main():
