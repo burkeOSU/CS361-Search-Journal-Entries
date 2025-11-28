@@ -28,7 +28,7 @@ def main():
     print("Awaiting message from client…\n")
     context = zmq.Context()
     socket = context.socket(zmq.REP)
-    socket.bind("tcp://*:5555")
+    socket.bind("tcp://*:5524")
 
     while True:
         #  Waits for message from client

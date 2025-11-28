@@ -6,7 +6,7 @@ context = zmq.Context()
 #  Socket talks to server
 print("Connecting to server…\n")
 socket = context.socket(zmq.REQ)
-socket.connect("tcp://localhost:5555")
+socket.connect("tcp://localhost:5524")
 
 # Parameters: keyword and file path
 keyword = "test"
