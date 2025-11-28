@@ -11,9 +11,10 @@ socket.connect("tcp://localhost:5524")
 # Parameters: keyword and file path
 keyword = "test"
 filePath = "searchFolder"
+mode = "json"
 
 # Dictionary for keyword and filePath
-searchClient = {"keyword": keyword, "filePath": filePath}
+searchClient = {"mode": mode, "keyword": keyword, "filePath": filePath}
 
 # send dictionary in json format
 socket.send_string(json.dumps(searchClient))

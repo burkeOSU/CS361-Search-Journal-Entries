@@ -7,7 +7,22 @@ import json
 searchFolder = "searchFolder"
 
 
-def folderSearch(keyword, searchFolder):
+def folderSearchTerm(keyword, searchFolder):
+    # List to store names of files containing keyword
+    foundFiles = []
+
+    # navigate into folder
+    # search file contents for keyword (use a for loop)
+    for file in os.listdir(searchFolder):
+        filePath = os.path.join(searchFolder, file)
+        with open(filePath) as f:
+            if keyword in f.read():
+                # if keyword is found, append list
+                foundFiles.append(file)
+
+    return foundFiles
+
+def folderSearchJson(keyword, searchFolder):
     # List to store names of files containing keyword
     foundFiles = []
 
@@ -38,10 +53,17 @@ def main():
         client = json.loads(receivedClient)
 
         # receive parameters
+        mode = client.get("mode")
         keyword = client.get("keyword")
         searchFolder = client.get("filePath")
 
-        searchResults = folderSearch(keyword, searchFolder)
+        if (mode == "terminal"):
+            searchResults = folderSearchTerm(keyword, searchFolder)
+        elif (mode == "json"):
+            searchResults = folderSearchJson(keyword, searchFolder)
+        else:
+            print(f"Error: Mode parameter not json or terminal.")
+
         #  Pause
         time.sleep(1)
 
