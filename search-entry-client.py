@@ -2,27 +2,30 @@ import zmq
 import json
 import os
 
-context = zmq.Context()
+def searchEntryClient():
+    context = zmq.Context()
 
-#  Socket talks to server
-print("Connecting to server…\n")
-socket = context.socket(zmq.REQ)
-socket.connect("tcp://localhost:5524")
+    #  Socket talks to server
+    print("Connecting to server…\n")
+    socket = context.socket(zmq.REQ)
+    socket.connect("tcp://localhost:5524")
 
-# Parameters: keyword and file path
-keyword = os.environ["searchKeyword"]
-user = os.environ["searchUser"]
-filePath = f"data/{user}"
-mode = "json"
+    # Parameters: keyword and file path
+    keyword = os.environ["searchKeyword"]
+    user = os.environ["searchUser"]
+    filePath = f"data/{user}"
+    mode = "json"
 
-# Dictionary for keyword and filePath
-searchClient = {"mode": mode, "keyword": keyword, "filePath": filePath}
+    # Dictionary for keyword and filePath
+    searchClient = {"mode": mode, "keyword": keyword, "filePath": filePath}
 
-# send dictionary in json format
-socket.send_string(json.dumps(searchClient))
+    # send dictionary in json format
+    socket.send_string(json.dumps(searchClient))
 
-while True:
+
     #  Receives reply
     receivedMessage = socket.recv_string()
-    print(f"{receivedMessage}")
-    break
+    print(receivedMessage)
+
+if __name__ == "__main__":
+    searchEntryClient()
