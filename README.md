@@ -1,3 +1,9 @@
-A microservice as part of the Portfolio assignment for Oregon State University CS361: SOFTWARE ENGINEERING I.
+# CS361-Search-Journal-Entries
+A microservice using ZeroMQ to communicate with a main program to search all journal entries for a keyword.
+If running on Windows, 'pip install pyzmq' is required to access the ZeroMQ communication pipeline.
 
-This microservice takes a keyword and folder as parameters, searches the files within the folder for the keyword, and returns the names of the files containing the keyword.
+# Instructions
+To request data from this microservice, use the following parameters:
+- mode: a string that represents whether the user is using a terminal or json program
+- keyword: a string that represents the keyword to search for
+- filePath: a string that represents the relative path to the folder containing the entries to search through
