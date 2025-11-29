@@ -31,7 +31,9 @@ def folderSearchJson(keyword, searchFolder):
     for file in os.listdir(searchFolder):
         filePath = os.path.join(searchFolder, file)
         with open(filePath) as f:
-            if keyword in f.read():
+            entry = json.load(f)
+            text = entry.get("text", "").lower()
+            if keyword.lower() in text:
                 # if keyword is found, append list
                 foundFiles.append(file)
 
@@ -55,7 +57,10 @@ def main():
         # receive parameters
         mode = client.get("mode")
         keyword = client.get("keyword")
-        searchFolder = client.get("filePath")
+        folderPath = client.get("filePath")
+
+        # microservice -> backend, join with data/user
+        searchFolder = os.path.join("..", "..", folderPath)
 
         if (mode == "terminal"):
             searchResults = folderSearchTerm(keyword, searchFolder)
@@ -72,7 +77,6 @@ def main():
         #  Sends reply back to client
         socket.send_string(sentMessage)
         print(f"Sent {sentMessage} message back to client.")
-        break
 
 
 if __name__ == "__main__":

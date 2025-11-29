@@ -6,7 +6,6 @@ def searchEntryClient():
     context = zmq.Context()
 
     #  Socket talks to server
-    print("Connecting to server…\n")
     socket = context.socket(zmq.REQ)
     socket.connect("tcp://localhost:5524")
 
@@ -21,7 +20,6 @@ def searchEntryClient():
 
     # send dictionary in json format
     socket.send_string(json.dumps(searchClient))
-
 
     #  Receives reply
     receivedMessage = socket.recv_string()
