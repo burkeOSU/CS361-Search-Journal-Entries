@@ -1,5 +1,6 @@
 import zmq
 import json
+import os
 
 context = zmq.Context()
 
@@ -9,8 +10,9 @@ socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5524")
 
 # Parameters: keyword and file path
-keyword = "test"
-filePath = "searchFolder"
+keyword = os.environ["searchKeyword"]
+user = os.environ["searchUser"]
+filePath = f"data/{user}"
 mode = "json"
 
 # Dictionary for keyword and filePath
